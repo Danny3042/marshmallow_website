@@ -4,12 +4,16 @@ import '../navigation/navigation_rail.dart';
 
 
 class HomeScreen extends StatefulWidget {
+  final ValueChanged<bool> onThemeChanged;
+
+  HomeScreen({required this.onThemeChanged});
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _selectedIndex = 0;
+  bool _isDarkMode = false;
 
   final List<Map<String, String>> googleTechnologies = [
     {
@@ -28,19 +32,18 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Google Technologies'),
+        actions: const <Widget>[
+          VerticalDivider(thickness: 1, width: 1),
+        ],
       ),
       body: Row(
-        children: <Widget>[
+        children: [
           CustomNavigationRail(
-            selectedIndex: _selectedIndex,
-            onDestinationSelected: (int index) {
-              setState(() {
-                _selectedIndex = index;
-              });
-            },
+            selectedIndex: 0,
+            onDestinationSelected: (index) {
+              // Handle navigation here
+            }, onThemeChanged: (bool value) { widget.onThemeChanged(value); },
           ),
-          VerticalDivider(thickness: 1, width: 1),
-          // This is the main content.
           Expanded(
             child: ListView.builder(
               itemCount: googleTechnologies.length,
@@ -51,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               },
             ),
-          )
+          ),
         ],
       ),
     );
