@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'screens/privacy_policy.dart';
 
 import 'screens/home_screen.dart';
 
@@ -30,6 +31,7 @@ class _MyAppState extends State<MyApp> {
             });
           },
         ),
+        '/privacy_policy': (context) => PrivacyPolicy(),
       },
     );
   }

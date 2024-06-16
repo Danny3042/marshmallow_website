@@ -6,14 +6,15 @@ import '../navigation/navigation_rail.dart';
 class HomeScreen extends StatefulWidget {
   final ValueChanged<bool> onThemeChanged;
 
-  HomeScreen({required this.onThemeChanged});
+  const HomeScreen({required this.onThemeChanged});
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool _isDarkMode = false;
+  int _selectedIndex = 0;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   final List<Map<String, String>> googleTechnologies = [
     {
@@ -30,8 +31,19 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       appBar: AppBar(
-        title: Text('Google Technologies'),
+        title: const Text('My Projects'),
+        leading: IconButton(
+          icon: const Icon(Icons.menu),
+          onPressed: () {
+           if (Scaffold.of(context).isDrawerOpen) {
+             Navigator.of(context).pop();
+           } else {
+              Scaffold.of(context).openDrawer();
+           }
+          },
+        ),
         actions: const <Widget>[
           VerticalDivider(thickness: 1, width: 1),
         ],
@@ -39,10 +51,17 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Row(
         children: [
           CustomNavigationRail(
-            selectedIndex: 0,
+            selectedIndex: _selectedIndex,
             onDestinationSelected: (index) {
-              // Handle navigation here
-            }, onThemeChanged: (bool value) { widget.onThemeChanged(value); },
+              setState(() {
+                _selectedIndex = index;
+              });
+
+              if (index == 1) {
+                Navigator.pushNamed(context, '/privacy_policy');
+              }
+            },
+            onThemeChanged: (bool value) { widget.onThemeChanged(value); },
           ),
           Expanded(
             child: ListView.builder(
