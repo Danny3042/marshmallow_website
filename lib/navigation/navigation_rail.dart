@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../Theme/Theme.dart';
 
 class CustomNavigationRail extends StatefulWidget {
   final ValueChanged<int> onDestinationSelected;

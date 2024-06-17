@@ -1,5 +1,6 @@
 // HomeScreen.dart
 import 'package:flutter/material.dart';
+import '../screens/privacy_policy.dart';
 import '../navigation/navigation_rail.dart';
 
 
@@ -15,6 +16,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  bool _DarkMode = false;
 
   final List<Map<String, String>> googleTechnologies = [
     {
@@ -58,7 +60,12 @@ class _HomeScreenState extends State<HomeScreen> {
               });
 
               if (index == 1) {
-                Navigator.pushNamed(context, '/privacy_policy');
+                Navigator.push(context, PageRouteBuilder(
+                  pageBuilder: (context, animation1, animation2) => PrivacyPolicy(),
+                  transitionsBuilder: (context, animation1, animation2, child) {
+                    return FadeTransition(opacity: animation1, child: child);
+                  },
+                ));
               }
             },
             onThemeChanged: (bool value) { widget.onThemeChanged(value); },
