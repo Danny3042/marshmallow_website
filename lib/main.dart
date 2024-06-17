@@ -1,48 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:marshmallow_website/screens/details.dart';
-import 'screens/privacy_policy.dart';
+import 'package:marshmallow_website/screens/privacy_policy.dart';
+import 'package:provider/provider.dart';
+import 'Theme/Theme.dart';
 import 'screens/home_screen.dart';
 
-class ThemeNotifier extends ChangeNotifier {
-  bool _isDarkMode = false;
-
-  bool get isDarkMode => _isDarkMode;
-
-  void toggleTheme() {
-    _isDarkMode = !_isDarkMode;
-    notifyListeners();
-  }
-}
-
 void main() {
-  runApp(
-    ChangeNotifierProvider(
-      create: (context) => ThemeNotifier(),
-      child: MyApp(),
-    ),
-  );
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final themeNotifier = Provider.of<ThemeNotifier>(context);
-    return MaterialApp(
-      title: 'Marshmallow website',
-      theme: ThemeData.light(),
-      darkTheme: ThemeData.dark(),
-      themeMode: themeNotifier.isDarkMode ? ThemeMode.dark : ThemeMode.light,
-      initialRoute: '/',
-      routes: {
-        '/': (context) => HomeScreen(
-          onThemeChanged: (value) {
-            themeNotifier.toggleTheme();
-          },
-        ),
-        '/privacy_policy': (context) => PrivacyPolicy(),
-        '/HealthComposePrivacyPolicyDetails' : (context) => DetailsScreen(),
-      },
+    return ChangeNotifierProvider<ThemeNotifier>(
+      create: (_) => ThemeNotifier(),
+      child: Consumer<ThemeNotifier>(
+        builder: (context, ThemeNotifier notifier, child) {
+          return MaterialApp(
+            theme: notifier.lightTheme,
+            darkTheme: notifier.darkTheme,
+            themeMode: notifier.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+            initialRoute: '/',
+            routes: {
+              '/': (context) => HomeScreen(),
+              '/privacy_policy': (context) => PrivacyPolicy(),
+              '/HealthComposePrivacyPolicyDetails' : (context) => DetailsScreen(),
+            },
+          );
+        },
+      ),
     );
   }
 }

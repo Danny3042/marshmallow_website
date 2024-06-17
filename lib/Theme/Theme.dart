@@ -5,8 +5,13 @@ class ThemeNotifier extends ChangeNotifier {
 
   bool get isDarkMode => _isDarkMode;
 
+  ThemeData get lightTheme => ThemeData.light();
+  ThemeData get darkTheme => ThemeData.dark();
+
+
   void toggleTheme() {
     _isDarkMode = !_isDarkMode;
     notifyListeners();
   }
 }
+

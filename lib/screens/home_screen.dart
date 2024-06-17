@@ -1,14 +1,11 @@
 // HomeScreen.dart
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../screens/privacy_policy.dart';
 import '../navigation/navigation_rail.dart';
-
+import '../Theme/Theme.dart';
 
 class HomeScreen extends StatefulWidget {
-  final ValueChanged<bool> onThemeChanged;
-
-  const HomeScreen({required this.onThemeChanged});
-
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -16,7 +13,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  bool _DarkMode = false;
 
   final List<Map<String, String>> googleTechnologies = [
     {
@@ -39,11 +35,11 @@ class _HomeScreenState extends State<HomeScreen> {
         leading: IconButton(
           icon: const Icon(Icons.menu),
           onPressed: () {
-           if (Scaffold.of(context).isDrawerOpen) {
-             Navigator.of(context).pop();
-           } else {
+            if (Scaffold.of(context).isDrawerOpen) {
+              Navigator.of(context).pop();
+            } else {
               Scaffold.of(context).openDrawer();
-           }
+            }
           },
         ),
         actions: const <Widget>[
@@ -68,7 +64,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ));
               }
             },
-            onThemeChanged: (bool value) { widget.onThemeChanged(value); },
           ),
           Expanded(
             child: ListView.builder(

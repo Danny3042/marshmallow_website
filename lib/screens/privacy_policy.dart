@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../navigation/navigation_rail.dart';
 import 'home_screen.dart';
 
@@ -9,7 +10,6 @@ class PrivacyPolicy extends StatefulWidget {
 
 class _PrivacyPolicyState extends State<PrivacyPolicy> {
   int _selectedIndex = 1; // Assuming Privacy Policy is at index 1
-  bool _DarkMode = false;
 
   @override
   Widget build(BuildContext context) {
@@ -29,16 +29,13 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
 
               if (index == 0) {
                 Navigator.push(context, PageRouteBuilder(
-                  pageBuilder: (context, animation1, animation2) => HomeScreen(onThemeChanged: (bool value) {  },),
+                  pageBuilder: (context, animation1, animation2) => HomeScreen(),
                   transitionsBuilder: (context, animation1, animation2, child) {
                     return FadeTransition(opacity: animation1, child: child);
                   },
                 ));
               }
               // Handle other destinations here
-            },
-            onThemeChanged: (bool value) {
-              // Handle theme change here
             },
           ),
           Expanded(

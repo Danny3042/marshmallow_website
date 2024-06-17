@@ -5,12 +5,10 @@ import '../Theme/Theme.dart';
 
 class CustomNavigationRail extends StatefulWidget {
   final ValueChanged<int> onDestinationSelected;
-  final ValueChanged<bool> onThemeChanged;
   final int selectedIndex;
 
   const CustomNavigationRail({
     required this.onDestinationSelected,
-    required this.onThemeChanged,
     required this.selectedIndex,
   });
 
@@ -19,8 +17,6 @@ class CustomNavigationRail extends StatefulWidget {
 }
 
 class _CustomNavigationRailState extends State<CustomNavigationRail> {
-  bool _isDarkMode = false;
-
   List<NavigationRailDestination> get _navRailDestinations => [
     const NavigationRailDestination(
       icon: Icon(Icons.home_outlined),
@@ -32,23 +28,18 @@ class _CustomNavigationRailState extends State<CustomNavigationRail> {
       selectedIcon: Icon(Icons.privacy_tip),
       label: Text('Policies'),
     ),
-    const NavigationRailDestination(
-      icon: Icon(Icons.star_border),
-      selectedIcon: Icon(Icons.star),
-      label: Text('Third'),
-    ),
     NavigationRailDestination(
-      icon: IconButton(
-        icon: Icon(_isDarkMode ? Icons.dark_mode : Icons.light_mode),
-        onPressed: () {
-          setState(() {
-            _isDarkMode = !_isDarkMode;
-          });
-          widget.onThemeChanged(_isDarkMode);
-        },
+      icon: Consumer<ThemeNotifier>(
+        builder: (context, themeNotifier, child) => IconButton(
+          icon: Icon(themeNotifier.isDarkMode ? Icons.dark_mode : Icons.light_mode),
+          onPressed: () {
+            themeNotifier.toggleTheme();
+          },
+        ),
       ),
-      label: const Text('Toggle Theme'),
+      label: Text('Toggle Theme'),
     ),
+    // other destinations...
   ];
 
   @override
