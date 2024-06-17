@@ -16,6 +16,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final ValueNotifier<bool> isDrawerOpenNotifier = ValueNotifier<bool>(false);
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +25,21 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('My Projects'),
         leading: Builder(
-          builder: (context) => IconButton(
-            icon: const Icon(Icons.menu),
+          builder: (context) => ValueListenableBuilder<bool>(
+            valueListenable: isDrawerOpenNotifier,
+            builder: (context, isDrawerOpen, child) => IconButton(
+              icon: Icon(isDrawerOpen ? Icons.menu_open : Icons.menu),
             onPressed: () {
-              scaffoldKey.currentState!.openDrawer();
+              if (isDrawerOpen) {
+                Navigator.of(context).pop();
+                isDrawerOpenNotifier.value = false;
+              } else {
+                scaffoldKey.currentState!.openDrawer();
+                isDrawerOpenNotifier.value = true;
+              }
             },
           ),
+        ),
         ),
         actions: const <Widget>[
           VerticalDivider(thickness: 1, width: 1),
