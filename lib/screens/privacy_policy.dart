@@ -5,6 +5,8 @@ import '../navigation/navigation_rail.dart';
 import 'home_screen.dart';
 
 class PrivacyPolicy extends StatefulWidget {
+  const PrivacyPolicy({super.key});
+
   @override
   _PrivacyPolicyState createState() => _PrivacyPolicyState();
 }
@@ -27,7 +29,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               onTap: () {
                 Navigator.push(context, PageRouteBuilder(
                   pageBuilder: (context, animation1, animation2) =>
-                      HomeScreen(),
+                      const HomeScreen(),
                   transitionsBuilder: (context, animation1, animation2, child) {
                     return FadeTransition(opacity: animation1, child: child);
                   },
@@ -47,7 +49,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
             Consumer<ThemeNotifier>(
               builder: (context, themeNotifier, child) => ListTile(
                 leading: Icon(themeNotifier.isDarkMode ? Icons.dark_mode : Icons.light_mode),
-                title: Text('Dark Mode'),
+                title: const Text('Dark Mode'),
                 trailing: Switch(
                   value: themeNotifier.isDarkMode,
                   onChanged: (value) {
@@ -70,7 +72,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
 
               if (index == 0) {
                 Navigator.push(context, PageRouteBuilder(
-                  pageBuilder: (context, animation1, animation2) => HomeScreen(),
+                  pageBuilder: (context, animation1, animation2) => const HomeScreen(),
                   transitionsBuilder: (context, animation1, animation2, child) {
                     return FadeTransition(opacity: animation1, child: child);
                   },

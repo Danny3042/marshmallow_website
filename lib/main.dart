@@ -6,10 +6,12 @@ import 'Theme/Theme.dart';
 import 'screens/home_screen.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<ThemeNotifier>(
@@ -22,9 +24,9 @@ class MyApp extends StatelessWidget {
             themeMode: notifier.isDarkMode ? ThemeMode.dark : ThemeMode.light,
             initialRoute: '/',
             routes: {
-              '/': (context) => HomeScreen(),
-              '/privacy_policy': (context) => PrivacyPolicy(),
-              '/HealthComposePrivacyPolicyDetails' : (context) => DetailsScreen(),
+              '/': (context) => const HomeScreen(),
+              '/privacy_policy': (context) => const PrivacyPolicy(),
+              '/HealthComposePrivacyPolicyDetails' : (context) => const DetailsScreen(),
             },
           );
         },

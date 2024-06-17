@@ -7,7 +7,7 @@ class CustomNavigationRail extends StatefulWidget {
   final ValueChanged<int> onDestinationSelected;
   final int selectedIndex;
 
-  const CustomNavigationRail({
+  const CustomNavigationRail({super.key, 
     required this.onDestinationSelected,
     required this.selectedIndex,
   });
@@ -37,7 +37,7 @@ class _CustomNavigationRailState extends State<CustomNavigationRail> {
           },
         ),
       ),
-      label: Text('Toggle Theme'),
+      label: const Text('Toggle Theme'),
     ),
     // other destinations...
   ];
