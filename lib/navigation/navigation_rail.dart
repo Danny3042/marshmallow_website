@@ -44,31 +44,20 @@ class _CustomNavigationRailState extends State<CustomNavigationRail> {
 
   @override
   Widget build(BuildContext context) {
-    final deviceSize = MediaQuery.of(context).size;
-    final isPhone = deviceSize.width < 600; // Adjust the threshold as needed
+    // Get the screen width
+    double screenWidth = MediaQuery.of(context).size.width;
 
-    if (isPhone) {
-      // Use Drawer for phone screens
-      return Drawer(
-        child: ListView(
-          children: _navRailDestinations.map((destination) {
-            return ListTile(
-              leading: destination.icon,
-              title: destination.label,
-              selected: _navRailDestinations.indexOf(destination) == widget.selectedIndex,
-              onTap: () => widget.onDestinationSelected(_navRailDestinations.indexOf(destination)),
-            );
-          }).toList(),
-        ),
-      );
-    } else {
-      // Use NavigationRail for larger screens
-      return NavigationRail(
-        selectedIndex: widget.selectedIndex,
-        onDestinationSelected: widget.onDestinationSelected,
-        labelType: NavigationRailLabelType.selected,
-        destinations: _navRailDestinations,
-      );
+    // If the screen width is less than 600, return an empty Container
+    if (screenWidth < 600) {
+      return Container();
     }
+
+    // Otherwise, return the NavigationRail
+    return NavigationRail(
+      selectedIndex: widget.selectedIndex,
+      onDestinationSelected: widget.onDestinationSelected,
+      labelType: NavigationRailLabelType.selected,
+      destinations: _navRailDestinations,
+    );
   }
 }

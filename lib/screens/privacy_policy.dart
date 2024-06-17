@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../Theme/Theme.dart';
 import '../navigation/navigation_rail.dart';
 import 'home_screen.dart';
 
@@ -15,8 +16,45 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
         title: const Text('Privacy Policies'),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            ListTile(
+              title: const Text('Home'),
+              onTap: () {
+                Navigator.push(context, PageRouteBuilder(
+                  pageBuilder: (context, animation1, animation2) =>
+                      PrivacyPolicy(),
+                  transitionsBuilder: (context, animation1, animation2, child) {
+                    return FadeTransition(opacity: animation1, child: child);
+                  },
+                ),
+                );
+            ListTile(
+              title: const Text('Privacy Policy'),
+              onTap: () {
+                Navigator.pop(context);
+
+                  }
+            );
+
+              },
+            ),
+            Consumer<ThemeNotifier>(
+              builder: (context, themeNotifier, child) => ListTile(
+                title: Text('Dark Mode'),
+                trailing: Switch(
+                  value: themeNotifier.isDarkMode,
+                  onChanged: (value) {
+                    themeNotifier.toggleTheme();
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
       body: Row(
         children: [
