@@ -22,17 +22,19 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
         child: ListView(
           children: [
             ListTile(
+              leading: const Icon(Icons.home),
               title: const Text('Home'),
               onTap: () {
                 Navigator.push(context, PageRouteBuilder(
                   pageBuilder: (context, animation1, animation2) =>
-                      PrivacyPolicy(),
+                      HomeScreen(),
                   transitionsBuilder: (context, animation1, animation2, child) {
                     return FadeTransition(opacity: animation1, child: child);
                   },
                 ),
                 );
             ListTile(
+              leading: const Icon(Icons.privacy_tip),
               title: const Text('Privacy Policy'),
               onTap: () {
                 Navigator.pop(context);
@@ -44,6 +46,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
             ),
             Consumer<ThemeNotifier>(
               builder: (context, themeNotifier, child) => ListTile(
+                leading: Icon(themeNotifier.isDarkMode ? Icons.dark_mode : Icons.light_mode),
                 title: Text('Dark Mode'),
                 trailing: Switch(
                   value: themeNotifier.isDarkMode,
