@@ -9,6 +9,7 @@ import '../components/TensorFlowInfo.dart';
 import '../screens/privacy_policy.dart';
 import '../navigation/navigation_rail.dart';
 import '../Theme/Theme.dart';
+import 'ContactForm.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -93,15 +94,23 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 ));
               }
+              else if (index == 2) {
+                Navigator.push(context, PageRouteBuilder(
+                  pageBuilder: (context, animation1, animation2) => const ContactForm(),
+                  transitionsBuilder: (context, animation1, animation2, child) {
+                    return FadeTransition(opacity: animation1, child: child);
+                  },
+                ));
+              }
             },
           ),
           Expanded(
             child: Column(
               children: [
-                Expanded(
+                const Expanded(
                   child: OneColumnLayout(),
                 ),
-                Expanded(
+                const Expanded(
                   flex: 2,
                   child: ThreeColumnLayout(),
                 ),

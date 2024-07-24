@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:marshmallow_website/screens/ContactForm.dart';
 import 'package:marshmallow_website/screens/details.dart';
 import 'package:marshmallow_website/screens/privacy_policy.dart';
 import 'package:provider/provider.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
               '/': (context) => const HomeScreen(),
               '/privacy_policy': (context) => const PrivacyPolicy(),
               '/HealthComposePrivacyPolicyDetails' : (context) => const DetailsScreen(),
+              '/ContactForm' : (context) => const ContactForm(),
             },
           );
         },

@@ -28,6 +28,11 @@ class _CustomNavigationRailState extends State<CustomNavigationRail> {
       selectedIcon: Icon(Icons.privacy_tip),
       label: Text('Policies'),
     ),
+    const NavigationRailDestination(
+        icon: Icon(Icons.contacts_outlined),
+        selectedIcon: Icon(Icons.contacts) ,
+        label: Text('Contact Us'),
+    ),
     NavigationRailDestination(
       icon: Consumer<ThemeNotifier>(
         builder: (context, themeNotifier, child) => IconButton(

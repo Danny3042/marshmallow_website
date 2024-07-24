@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marshmallow_website/screens/ContactForm.dart';
 import 'package:provider/provider.dart';
 import '../Theme/Theme.dart';
 import '../navigation/navigation_rail.dart';
@@ -28,22 +29,30 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               title: const Text('Home'),
               onTap: () {
                 Navigator.push(context, PageRouteBuilder(
-                  pageBuilder: (context, animation1, animation2) =>
-                      const HomeScreen(),
+                  pageBuilder: (context, animation1, animation2) => const HomeScreen(),
                   transitionsBuilder: (context, animation1, animation2, child) {
                     return FadeTransition(opacity: animation1, child: child);
                   },
-                ),
-                );
+                ));
+              },
+            ),
             ListTile(
               leading: const Icon(Icons.privacy_tip),
               title: const Text('Privacy Policy'),
               onTap: () {
                 Navigator.pop(context);
-
-                  }
-            );
-
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.contacts),
+              title: const Text('Contact Us'),
+              onTap: () {
+                Navigator.push(context, PageRouteBuilder(
+                  pageBuilder: (context, animation1, animation2) => const ContactForm(),
+                  transitionsBuilder: (context, animation1, animation2, child) {
+                    return FadeTransition(opacity: animation1, child: child);
+                  },
+                ));
               },
             ),
             Consumer<ThemeNotifier>(
@@ -79,6 +88,14 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                 ));
               }
               // Handle other destinations here
+              else if (index == 2) {
+                Navigator.push(context, PageRouteBuilder(
+                  pageBuilder: (context, animation1, animation2) => const ContactForm(),
+                  transitionsBuilder: (context, animation1, animation2, child) {
+                    return FadeTransition(opacity: animation1, child: child);
+                  },
+                ));
+              }
             },
           ),
           Expanded(
