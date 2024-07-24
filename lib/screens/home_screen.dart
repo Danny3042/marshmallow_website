@@ -1,5 +1,7 @@
 // HomeScreen.dart
 import 'package:flutter/material.dart';
+import 'package:marshmallow_website/components/HealthAppInfo.dart';
+import 'package:marshmallow_website/components/SupportInfo.dart';
 import 'package:provider/provider.dart';
 import '../components/FlutterInfo.dart';
 import '../components/MaterialDesignInfo.dart';
@@ -93,15 +95,27 @@ class _HomeScreenState extends State<HomeScreen> {
               }
             },
           ),
-          const Expanded(
-            child: ThreeColumnLayout(),
+          Expanded(
+            child: Column(
+              children: [
+                Expanded(
+                  child: OneColumnLayout(),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: ThreeColumnLayout(),
+                ),
+                Expanded( // Wrap SupportInfo in an Expanded widget
+                  child: SupportInfo(),
+                ),
+              ],
+            ),
           ),
         ],
       ),
     );
   }
 }
-
 class ThreeColumnLayout extends StatelessWidget {
   const ThreeColumnLayout({super.key});
 
@@ -135,6 +149,38 @@ class ThreeColumnLayout extends StatelessWidget {
           );
         }
       },
+    );
+  }
+}
+
+class OneColumnLayout extends StatelessWidget {
+  const OneColumnLayout({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          HealthAppInfo(),
+          // Add more widgets here if needed
+        ],
+      ),
+    );
+  }
+}
+
+class TwoColumnLayout extends StatelessWidget {
+  const TwoColumnLayout({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          SupportInfo(),
+          // Add more widgets here if needed
+        ],
+      ),
     );
   }
 }

@@ -25,9 +25,19 @@ class HealthAppInfo extends StatelessWidget {
             style: TextStyle(fontSize: 16),
           ),
           const SizedBox(height: 20),
-          Image.asset('assets/images/screenshot1.png'),
+          SizedBox(
+            width: 400,
+            height: 400,
+            child: Image.asset('assets/images/screenshot1.png'),
+          ),
+
           const SizedBox(height: 10),
-          Image.asset('assets/images/screenshot2.png'),
+          SizedBox(
+            height: 400,
+            width: 400,
+            child: Image.asset('assets/images/screenshot2.png'),
+          )
+
           // Add more Image.asset widgets for additional screenshots
         ],
       ),
