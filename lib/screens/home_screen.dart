@@ -9,6 +9,8 @@ import '../navigation/navigation_rail.dart';
 import '../Theme/Theme.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -50,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
               title: const Text('Privacy Policy'),
               onTap: () {
                 Navigator.push(context, PageRouteBuilder(
-                  pageBuilder: (context, animation1, animation2) => PrivacyPolicy(),
+                  pageBuilder: (context, animation1, animation2) => const PrivacyPolicy(),
                   transitionsBuilder: (context, animation1, animation2, child) {
                     return FadeTransition(opacity: animation1, child: child);
                   },
@@ -60,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Consumer<ThemeNotifier>(
               builder: (context, themeNotifier, child) => ListTile(
                 leading: Icon(themeNotifier.isDarkMode ? Icons.dark_mode : Icons.light_mode),
-                title: Text('Dark Mode'),
+                title: const Text('Dark Mode'),
                 trailing: Switch(
                   value: themeNotifier.isDarkMode,
                   onChanged: (value) {
@@ -83,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
               if (index == 1) {
                 Navigator.push(context, PageRouteBuilder(
-                  pageBuilder: (context, animation1, animation2) => PrivacyPolicy(),
+                  pageBuilder: (context, animation1, animation2) => const PrivacyPolicy(),
                   transitionsBuilder: (context, animation1, animation2, child) {
                     return FadeTransition(opacity: animation1, child: child);
                   },
@@ -91,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
               }
             },
           ),
-          Expanded(
+          const Expanded(
             child: ThreeColumnLayout(),
           ),
         ],
@@ -101,13 +103,15 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class ThreeColumnLayout extends StatelessWidget {
+  const ThreeColumnLayout({super.key});
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth > 600) {
           // If the screen width is greater than 600, use a three column layout
-          return Row(
+          return const Row(
             children: <Widget>[
               Expanded(
                 child: MaterialDesignInfo(),
@@ -123,7 +127,7 @@ class ThreeColumnLayout extends StatelessWidget {
         } else {
           // If the screen width is less than or equal to 600, use a single column layout
           return ListView(
-            children: <Widget>[
+            children: const <Widget>[
               MaterialDesignInfo(),
               FlutterInfo(),
               TensorFlowInfo(),
@@ -134,5 +138,3 @@ class ThreeColumnLayout extends StatelessWidget {
     );
   }
 }
-
-

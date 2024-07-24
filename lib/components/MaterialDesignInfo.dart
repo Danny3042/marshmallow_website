@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 class MaterialDesignInfo extends StatelessWidget {
+  const MaterialDesignInfo({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: MediaQuery.of(context).size.height,
       child: Scaffold(
         appBar: AppBar(

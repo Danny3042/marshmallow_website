@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 class TensorFlowInfo extends StatelessWidget {
+  const TensorFlowInfo({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: MediaQuery.of(context).size.height,
       child: Scaffold(
         appBar: AppBar(
