@@ -54,6 +54,7 @@ class _ContactFormState extends State<ContactForm> {
                   },
                 ),
                 );
+
                 ListTile(
                     leading: const Icon(Icons.privacy_tip),
                     title: const Text('Privacy Policy'),
@@ -106,6 +107,14 @@ class _ContactFormState extends State<ContactForm> {
               if (index == 0) {
                 Navigator.push(context, PageRouteBuilder(
                   pageBuilder: (context, animation1, animation2) => const HomeScreen(),
+                  transitionsBuilder: (context, animation1, animation2, child) {
+                    return FadeTransition(opacity: animation1, child: child);
+                  },
+                ));
+              }
+              else if (index == 1) {
+                Navigator.push(context, PageRouteBuilder(
+                  pageBuilder: (context, animation1, animation2) => const PrivacyPolicy(),
                   transitionsBuilder: (context, animation1, animation2, child) {
                     return FadeTransition(opacity: animation1, child: child);
                   },

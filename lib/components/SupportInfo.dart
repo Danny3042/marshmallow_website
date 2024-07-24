@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../screens/ContactForm.dart';
 
 class SupportInfo extends StatelessWidget {
   final List<FAQ> faqs = [
@@ -6,7 +7,6 @@ class SupportInfo extends StatelessWidget {
         answer: "HealthCompose is a health and fitness app to help you maintain a healthy lifestyle by setting goals, completing tasks, and view health data in one place using Apple Health and Google Health Connect"),
     FAQ(question: "Is HealthCompose free?",
         answer: "HealthCompose is free for people. There are no hidden fees or missing features. There are no ads, and we do not collect or sell personal data."),
-    // Add more FAQs here
     FAQ(question: "Can I delete all my data within my account?",
         answer: "Yes, you control your data within HealthCompose. Within the app, go to Profile and at the bottom you will see the option to “Delete Account,” which will delete all of your data."),
     FAQ(question: "Why should I use CommonHealth? ",
@@ -45,10 +45,23 @@ class SupportInfo extends StatelessWidget {
             },
           ),
         ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ContactForm()),
+              );
+            },
+            child: const Text('Contact Us'),
+          ),
+        ),
       ],
     );
   }
 }
+
 class FAQ {
   final String question;
   final String answer;

@@ -62,6 +62,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 ));
               },
             ),
+            ListTile(
+              leading: const Icon(Icons.contacts),
+              title: const Text('Contact Us'),
+              onTap: () {
+                Navigator.push(context, PageRouteBuilder(
+                  pageBuilder: (context, animation1, animation2) => const ContactForm(),
+                  transitionsBuilder: (context, animation1, animation2, child) {
+                    return FadeTransition(opacity: animation1, child: child);
+                  },
+                ));
+              },
+            ),
             Consumer<ThemeNotifier>(
               builder: (context, themeNotifier, child) => ListTile(
                 leading: Icon(themeNotifier.isDarkMode ? Icons.dark_mode : Icons.light_mode),

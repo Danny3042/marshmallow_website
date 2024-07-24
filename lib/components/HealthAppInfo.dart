@@ -24,22 +24,61 @@ class HealthAppInfo extends StatelessWidget {
                 'to achieve your fitness goals.',
             style: TextStyle(fontSize: 16),
           ),
-          const SizedBox(height: 20),
-          SizedBox(
-            width: 400,
-            height: 400,
-            child: Image.asset('assets/images/screenshot1.png'),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const FullScreenImage(imagePath: 'assets/images/screenshot1.png'),
+                ),
+              );
+            },
+            child: SizedBox(
+              width: 400,
+              height: 400,
+              child: Image.asset('assets/images/screenshot1.png'),
+            ),
           ),
 
-          const SizedBox(height: 10),
-          SizedBox(
-            height: 400,
-            width: 400,
-            child: Image.asset('assets/images/screenshot2.png'),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const FullScreenImage(imagePath: 'assets/images/screenshot2.png'),
+                ),
+              );
+            },
+            child: SizedBox(
+              width: 400,
+              height: 400,
+              child: Image.asset('assets/images/screenshot2.png'),
+            ),
           )
 
           // Add more Image.asset widgets for additional screenshots
         ],
+      ),
+    );
+  }
+}
+
+class FullScreenImage extends StatelessWidget {
+  final String imagePath;
+
+  const FullScreenImage({Key? key, required this.imagePath}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Full Screen Image'),
+      ),
+      body: GestureDetector(
+        onTap: () => Navigator.pop(context),
+        child: Center(
+          child: Image.asset(imagePath),
+        ),
       ),
     );
   }
