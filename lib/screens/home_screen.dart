@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        title: const Text('My Projects'),
+        title: const Text('HealthCompose'),
         leading: Builder(
           builder: (context) => IconButton(
             icon: const Icon(Icons.menu),
